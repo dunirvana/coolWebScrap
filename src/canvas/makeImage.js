@@ -21,7 +21,7 @@ module.exports = class MakeImage {
     message = this.formatMesssage(message);
 
     this.ctx.font = '15px Arial'
-    this.ctx.fillStyle = '#FF0000';
+    this.ctx.fillStyle = '#58a6ff';
     this.ctx.fillText(message, 5, 25)
   
     let result = null;
