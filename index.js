@@ -100,7 +100,13 @@ app.get('/programero-last-post-image', async (req, res) => {
       const mi = new makeImage(canvas, loadImage);
       mi.getImage(message, imagePath)
         .then(img => {
-          res.send(img);
+          res.writeHead(
+            200,
+            {
+              "Content-Type": "image/png"
+            }
+          );
+          res.end(img);
         });      
     });
 })
