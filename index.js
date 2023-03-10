@@ -7,7 +7,7 @@ const cheerio = require('cheerio')
 
 // make image
 const { createCanvas, loadImage } = require('canvas')
-const canvas = createCanvas(500, 40)
+// const canvas = createCanvas(500, 40)
 
 // config
 const app = express()
