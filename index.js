@@ -18,6 +18,8 @@ const PORT = 4000
 const scrape = require('./src/scraping/scrape')
 const makeImage = require('./src/canvas/makeImage')
 
+// version
+const pjson = require('./package.json');
 
 /* *** APIs *** */
 
@@ -39,7 +41,7 @@ app.get('/', (req, res) => {
 
   const content = 
     `
-      Hello this is my API to fetch the last post of my blog 🥳 
+      Hello this is my API to fetch the last post of my blog 🥳 <strong>(v${pjson.version})</strong>
       <hr> 
       <p>
       The goal here is to scrape the blog to take the last post and offer endpoints to retrieve the title of the last post as an image as well as an endpoint that redirects to that post
