@@ -90,19 +90,18 @@ app.get('/programero-last-post-image', async (req, res) => {
         .then(img => {
           res.send(img);
         });      
-    });    
-
+    });
 })
 
 /** Endpoint to redirect navigation to last post */
-// app.get('/programero-last-post-url', async (req, res) => {
+app.get('/programero-last-post-url', async (req, res) => {
 
-//   await getLastPost()  
-//     .then(info => {
+  await getLastPost()  
+    .then(info => {
       
-//       res.status(301).redirect(info.data.url)
-//     });  
-// })
+      res.status(301).redirect(info.data.url)
+    });  
+})
 
 
 // Export the Express API
