@@ -27,27 +27,29 @@ app.listen(PORT, () => {
 /** Show what the api is about  */
 app.get('/', (req, res) => {
 
-  let routes = [];
-  const ignoredRoutes = ['/'];
+  // let routes = [];
+  // const ignoredRoutes = ['/'];
 
-  app._router.stack.forEach(function(r){    
-    if (r.route && r.route.path && !ignoredRoutes.includes(r.route.path)){    
-      routes.push(`<li>${r.route.path}</li>`);
-    }
-  })
+  // app._router.stack.forEach(function(r){    
+  //   if (r.route && r.route.path && !ignoredRoutes.includes(r.route.path)){    
+  //     routes.push(`<li>${r.route.path}</li>`);
+  //   }
+  // })
 
-  const content = 
-    `
-      Hello this is my API to fetch the last post of my blog 🥳 
-      <hr> 
-      <p>
-      The goal here is to scrape the blog to take the last post and offer endpoints to retrieve the title of the last post as an image as well as an endpoint that redirects to that post
-      </p>
-      <br> 
-      <ul>${routes.join('')}</ul>
-    `;
+  // const content = 
+  //   `
+  //     Hello this is my API to fetch the last post of my blog 🥳 
+  //     <hr> 
+  //     <p>
+  //     The goal here is to scrape the blog to take the last post and offer endpoints to retrieve the title of the last post as an image as well as an endpoint that redirects to that post
+  //     </p>
+  //     <br> 
+  //     <ul>${routes.join('')}</ul>
+  //   `;
 
-  res.send(content)
+  // res.send(content)
+
+  res.send('Hello this is my API to fetch the last post of my blog 🥳 ');
 })
 
 /** Method to retrieve the last post */
