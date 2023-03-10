@@ -13,6 +13,10 @@ const canvas = createCanvas(500, 40)
 // config
 const app = express()
 const PORT = 4000
+const path = require('path');
+const publicDir = require('path').join(__dirname, '/public'); 
+//app.use(express.static(path.resolve('./public')));
+app.use(express.static(publicDir));
 
 // code 
 const scrape = require('./src/scraping/scrape')
@@ -48,6 +52,7 @@ app.get('/', (req, res) => {
       </p>
       <br> 
       <ul>${routes.join('')}</ul>
+      <img src='/img/cat-cartoon.png' >
     `;
 
   res.send(content)
@@ -57,11 +62,15 @@ app.get('/', (req, res) => {
 
 /** Method to retrieve the last post */
 const getLastPost = async () => {
-  const sr = new scrape(rp, cheerio);
+
+  const urlToScrape = 'https://programero.blogspot.com/';
+  const sr = new scrape(rp, cheerio, urlToScrape);
 
   let response = null;
 
-  await sr.getInfo()
+  const elementInfo = 'div.big-post-title-inner h3.post-title';
+
+  await sr.getInfo(elementInfo)
     .then(info => {
       response = info;
     });  
@@ -86,9 +95,10 @@ app.get('/programero-last-post-image', async (req, res) => {
     .then(info => {
 
       const message = info.data.message;
+      const imagePath = `${publicDir}/img/cat-cartoon.png`;
 
       const mi = new makeImage(canvas, loadImage);
-      mi.getImage(message)
+      mi.getImage(message, imagePath)
         .then(img => {
           res.send(img);
         });      

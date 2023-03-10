@@ -4,7 +4,11 @@
     {
       "src": "index.js",
       "use": "@now/node"
-    }
+    },
+    {
+      "src": "assets",
+      "use": "@now/node"
+    }    
   ],
   "routes": [
     {

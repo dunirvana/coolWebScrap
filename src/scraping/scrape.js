@@ -1,12 +1,12 @@
 module.exports = class Scrape {
 
-  constructor(rp, cheerio) {
+  constructor(rp, cheerio, urlToScrape) {
 
     this.rp = rp;
     this.cheerio = cheerio;
     
     this.options = {
-      uri: 'https://programero.blogspot.com/',
+      uri: urlToScrape,
       transform: function (body) {
     
         return cheerio.load(body)
@@ -15,7 +15,7 @@ module.exports = class Scrape {
   
   }
   
-  async getInfo(){
+  async getInfo(elementInfo){
     
     let response = {};
 
@@ -23,7 +23,7 @@ module.exports = class Scrape {
       .then(($) => {
   
         // Find element
-        const divsWithClass = $('div.big-post-title-inner h3.post-title');
+        const divsWithClass = $(elementInfo);
   
         // Iterate over element
         divsWithClass.each((i, div) => {

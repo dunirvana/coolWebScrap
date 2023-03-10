@@ -16,7 +16,7 @@ module.exports = class MakeImage {
     return message;
   }
 
-  async getImage(message) {
+  async getImage(message, imagePath) {
 
     message = this.formatMesssage(message);
 
@@ -26,7 +26,7 @@ module.exports = class MakeImage {
   
     let result = null;
 
-    await this.loadImage('assets/img/cat-cartoon.png').then((image) => {
+    await this.loadImage(imagePath).then((image) => {
       this.ctx.drawImage(image, 0, 0, 0, 0)
       result = this.canvas.toBuffer('image/png', { compressionLevel: 3, filters: this.canvas.PNG_FILTER_NONE })
     });
