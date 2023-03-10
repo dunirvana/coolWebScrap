@@ -1,7 +1,6 @@
 module.exports = class Scrape {
 
   constructor(rp, cheerio) {
-    console.log('new Scrape!');
 
     this.rp = rp;
     this.cheerio = cheerio;
@@ -9,7 +8,6 @@ module.exports = class Scrape {
     this.options = {
       uri: 'https://programero.blogspot.com/',
       transform: function (body) {
-        //console.log('transform', body);
     
         return cheerio.load(body)
       }
@@ -18,8 +16,6 @@ module.exports = class Scrape {
   }
   
   async getInfo(){
-    console.log('getInfo!');
-
     
     let response = {};
 
@@ -34,13 +30,12 @@ module.exports = class Scrape {
           response = {
             status: 200,
             data: {
-              title: $(div).text(),
+              message: $(div).text(),
               url: $('a', div).attr('href')
             }
           };
         });
 
-        console.log('return', response);
       })
       .catch((err) => {        
         console.error(err);
