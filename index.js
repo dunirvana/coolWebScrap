@@ -7,8 +7,8 @@ const cheerio = require('cheerio')
 
 // make image
 // const { createCanvas, loadImage } = require('canvas')
-const cv = require('canvas')
-// const canvas = createCanvas(500, 40)
+const { createCanvas, loadImage } = require('@napi-rs/canvas')
+const canvas = createCanvas(500, 40)
 
 // config
 const app = express()
@@ -16,7 +16,7 @@ const PORT = 4000
 
 // code 
 const scrape = require('./src/scraping/scrape')
-// const makeImage = require('./src/canvas/makeImage')
+const makeImage = require('./src/canvas/makeImage')
 
 
 /* *** APIs *** */
@@ -78,21 +78,21 @@ app.get('/programero-last-post', async (req, res) => {
 })
 
 /** Endpoint to retrieve an image with the text referring to the title of the last post */
-// app.get('/programero-last-post-image', async (req, res) => {
+app.get('/programero-last-post-image', async (req, res) => {
   
-//   await getLastPost()  
-//     .then(info => {
+  await getLastPost()  
+    .then(info => {
 
-//       const message = info.data.message;
+      const message = info.data.message;
 
-//       const mi = new makeImage(canvas, loadImage);
-//       mi.getImage(message)
-//         .then(img => {
-//           res.send(img);
-//         });      
-//     });    
+      const mi = new makeImage(canvas, loadImage);
+      mi.getImage(message)
+        .then(img => {
+          res.send(img);
+        });      
+    });    
 
-// })
+})
 
 /** Endpoint to redirect navigation to last post */
 // app.get('/programero-last-post-url', async (req, res) => {
